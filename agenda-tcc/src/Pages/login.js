@@ -1,8 +1,17 @@
 import React from "react";
 import '../style/login.css';
 import ImgLogin from "../assets/Img-Login.png"
+import { useState } from "react";
+
+
 
 function Login(){
+    const [animation, setAnimation] = useState(false);
+
+    const handleAnimation = () => {
+        setAnimation(!animation);
+    }
+
     return(
         <div className="card-login">  
             <div className="card-login-left"> 
@@ -14,7 +23,7 @@ function Login(){
                         <label>Senha</label>
                         <input type="password" className="input-senha" placeholder="Digite sua senha"/>
                         <button type="submit" className="btn-login">Entrar</button>
-                        <button type="button" className="btn-cadastrar">Cadastrar</button>
+                        <button type="button" className="btn-cadastrar" onClickCapture={handleAnimation}>Cadastrar</button>
                     </form>
                 </div>
             </div>
@@ -28,18 +37,16 @@ function Login(){
                         <input type="text" placeholder="Digite seu usuário" />
                         <label>Senha</label>
                         <input type="password" placeholder="Digite sua senha" />
-                        <button type="submit" className="btn-login">Cdastrar</button>
-                        <button type="button" className="btn-cadastrar">Login</button>
+                        <button type="submit" className="btn-login" onClick={handleAnimation}>Cadastrar</button>
+                        <button type="button" className="btn-cadastrar" onClick={handleAnimation}>Login</button>
                     </form>
                 </div>
             </div>
-            <div className="card-login-img">
-                <img src={ImgLogin} alt="Imagem de Login" />
+            <div className={`card-Img ${animation ? "animar-img" : ""}`}>
+                <img src={ImgLogin} alt="Imagem de Login" className="img-login" />
             </div>
         </div>
     );
 }
 
 export default Login;
-
-
