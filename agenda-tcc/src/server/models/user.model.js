@@ -26,6 +26,12 @@ const Usuario = database.define('usuario',{
     senha: {
         type: Sequelize.STRING, 
         allowNull: false, 
+    },
+
+    pai: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false , 
+        defaultValue: true,
     }
 } )
 
