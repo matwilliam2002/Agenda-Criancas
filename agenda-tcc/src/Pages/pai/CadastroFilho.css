@@ -1,0 +1,181 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+/* Estilização do formulário de cadastro */
+.formCadastroFilho {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  height: fit-content;
+}
+
+.formCadastroFilho h1 {
+  color: #4e54c8;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 28px;
+  position: relative;
+}
+
+.formCadastroFilho h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #8f94fb;
+  border-radius: 2px;
+}
+
+.formCadastroFilho form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formCadastroFilho label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.formCadastroFilho input {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.formCadastroFilho input:focus {
+  outline: none;
+  border-color: #4e54c8;
+  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);
+}
+
+.formCadastroFilho button {
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
+}
+
+.formCadastroFilho button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+}
+
+/* Estilização da lista de filhos */
+.ListarFilhos {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 650px;
+}
+
+.ListarFilhos h1 {
+  color: #4e54c8;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 28px;
+  position: relative;
+}
+
+.ListarFilhos h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #8f94fb;
+  border-radius: 2px;
+}
+
+.ListarFilhos ul {
+  list-style-type: none;
+}
+
+.ListarFilhos li {
+  background-color: #f5f7fa;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.ListarFilhos li:hover {
+  transform: translateX(5px);
+}
+
+.ListarFilhos button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ListarFilhos button:hover {
+  background-color: #ff5252;
+}
+
+/* Mensagem de erro */
+.ListarFilhos p {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .Container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .formCadastroFilho, .ListarFilhos {
+    max-width: 100%;
+    padding: 20px;
+  }
+  
+  .ListarFilhos li {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
