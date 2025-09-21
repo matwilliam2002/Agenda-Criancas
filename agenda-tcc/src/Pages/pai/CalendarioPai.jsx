@@ -9,15 +9,15 @@ function CalendarioPai() {
         navigate('/cadastroFilho')
     }
 
-    function handlePremio(params) {
-        navigate('/CadastroPremio')
+    function handleTarefa(params) {
+        navigate('/cadastroTarefa')
     }
     
     return(
         <div>
             <h1>Voce esta no calendario do Pai</h1>
             <button onClick={handleDirecionamento} >CONFIGURACAO</button>
-            <button onClick={handlePremio} >Premios</button>
+            <button onClick={handleTarefa}>Tarefas</button>
         </div>
         
     ); 

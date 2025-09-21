@@ -1,0 +1,81 @@
+/* Container principal do calendário */
+.fc {
+  max-width: 1300px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Título do mês */
+.fc-toolbar-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-transform: capitalize;
+}
+
+/* Botões do calendário */
+.fc .fc-button {
+  background-color: #3498db;
+  color: white;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.fc .fc-button:hover {
+  background-color: #2980b9;
+}
+
+.fc .fc-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(52, 152, 219, 0.7);
+}
+
+/* Botão "Adicionar" em destaque */
+.fc .fc-button-primary {
+  background-color: #27ae60;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: #219150;
+}
+
+/* Estilo dos dias do calendário */
+.fc-daygrid-day {
+  border: 1px solid #ecf0f1;
+  transition: background-color 0.2s ease;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f9f9f9;
+}
+
+/* Dia atual destacado */
+.fc-day-today {
+  background-color: #f1c40f33 !important;
+  border: 2px solid #f39c12 !important;
+}
+
+/* Estilo dos eventos */
+.fc-event {
+  background-color: #8e44ad !important;
+  border: none !important;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 6px;
+  color: white !important;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fc-event:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}

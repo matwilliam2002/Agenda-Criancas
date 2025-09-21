@@ -32,7 +32,7 @@ const validacao = {
         }
 
         const token = jwt.sign(
-            { id: user.id, usuario: user.usuario, isPai: user.pai },
+            { id: user.id, usuario: user.usuario, isPai: user.pai, idPai: user.idPai },
             chaveJWT,
             { expiresIn: '1h' }
         );

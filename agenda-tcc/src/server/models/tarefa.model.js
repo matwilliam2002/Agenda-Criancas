@@ -1,5 +1,7 @@
 const dataBase = require('../../database/db'); 
 const Sequelize = require('sequelize'); 
+const Pai = require('./user.model'); 
+
 
 const Tarefa = dataBase.define('tarefas', {
     id: {
@@ -19,4 +21,8 @@ const Tarefa = dataBase.define('tarefas', {
         allowNull: false
     }
 })
+
+Pai.hasMany(Tarefa, {foreignKey: "idPai"}); 
+Tarefa.belongsTo(Pai, {foreignKey: "idPai"}); 
+
 module.exports = Tarefa; 

@@ -1,0 +1,112 @@
+/* Container principal */
+.formularioCriarTarefa {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.formularioCriarTarefa h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+}
+
+/* Inputs e Labels */
+.formularioCriarTarefa label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #444;
+}
+
+.formularioCriarTarefa input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.formularioCriarTarefa input:focus {
+  border-color: #007bff;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.4);
+}
+
+/* Botão */
+.formularioCriarTarefa button {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formularioCriarTarefa button:hover {
+  background: #0056b3;
+}
+
+/* Lista de tarefas */
+.listaTarefas {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.listaTarefas h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+}
+
+.listaTarefas ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listaTarefas li {
+  background: #fff;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.listaTarefas li:hover {
+  transform: scale(1.02);
+}
+
+/* Botões da lista */
+.listaTarefas li button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ffc107;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.listaTarefas li button:hover {
+  background: #e0a800;
+}

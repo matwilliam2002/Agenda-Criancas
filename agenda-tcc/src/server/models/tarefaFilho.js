@@ -16,7 +16,12 @@ const TarefaFilho = sequelize.define('tarefasFilhos', {
         type: Sequelize.BOOLEAN, 
         allowNull: false,
         defaultValue: false
-    }
+    }, 
+    
+    dataHora: {
+        type: Sequelize.DATE,
+        allowNull: false,
+    }, 
 }); 
 
 Filho.hasMany(TarefaFilho, {foreignKey: 'filhoId'}); 

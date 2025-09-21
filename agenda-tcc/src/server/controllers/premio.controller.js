@@ -6,7 +6,6 @@ const operacoesPremios = {
             const {nomePremio, valorPremio} = req.body; 
             console.log("req.body:", req.body);
 
-
             const premioExistente = await Premio.findOne({where: {nomePremio}});
 
             if(premioExistente){

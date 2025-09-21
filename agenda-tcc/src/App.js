@@ -6,6 +6,7 @@ import CadastroFilho from './Pages/pai/CadastroFilho';
 import { Routes, Route } from 'react-router-dom';
 import CalendarioFilho from './Pages/filho/calendarioFilho';
 import CadastroPremio from './Pages/pai/CadastroPremio'; 
+import CadastroTarefa from './Pages/pai/cadastroTarefa';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path='/calendarioFilho' element={< CalendarioFilho />}/>
       <Route path='/cadastroFilho' element={<CadastroFilho />} />
       <Route path='/cadastroPremio' element={<CadastroPremio />} /> 
+      <Route path='/cadastroTarefa' element={<CadastroTarefa />} />
     </Routes>
   );
 }
