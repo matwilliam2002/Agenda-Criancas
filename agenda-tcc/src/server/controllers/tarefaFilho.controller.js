@@ -4,7 +4,13 @@ const Tarefa = require('../models/tarefa.model');
 const operacoesTarefasFilho = {
     create: async(req, res) => {
         try {
-            const {filhoId, tarefaId, dataHora} = req.body; 
+            const {tarefaId, dataHora} = req.body; 
+            
+            const filhoId = req.usuario.id; 
+            console.log(req.usuario);
+
+            console.log("usuário", filhoId);
+            
 
             const novaTarefaFilho = await TarefaFilho.create({
                 filhoId, 
@@ -12,9 +18,7 @@ const operacoesTarefasFilho = {
                 dataHora,
                 concluida: false, 
             })
-
             return res.status(201).json({message: 'Tarefa criada com sucesso', novaTarefaFilho}); 
-            
             
         } catch (error) {
                 res.status(500).json({ error: "Erro ao criar tarefaFilho" });
@@ -25,22 +29,14 @@ const operacoesTarefasFilho = {
     try {
         const filhoId = req.usuario.id; 
         const tarefaFilho= await TarefaFilho.findAll({
-            where: {filhoId},
+            where: {
+                filhoId, 
+                concluida: false,   
+            },
             include: [{model: Tarefa}] 
         })
 
-        const eventos = tarefaFilho.map(a =>({
-            id:a.id, 
-            title: a.Tarefa.nomeTarefa, 
-            start: a.dataHora, 
-            extendedProps: {
-                concluida: a.concluida, 
-                tarefaId: a.tarefaId, 
-                valor: a.Tarefa.valorTarefa,
-            }
-        }))
-
-        res.json(eventos); 
+        res.json(tarefaFilho); 
 
     } catch (error) {
         console.error(error);

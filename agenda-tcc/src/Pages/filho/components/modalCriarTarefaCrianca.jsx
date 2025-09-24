@@ -5,11 +5,10 @@ function ModalCriarTarefa({onClose}) {
 
   const [dadosTarefas, setDadosTarefas] = useState([]); 
   const [tarefaEscolhida, setTarefaEscolhida] = useState([]); 
+  const [dataHora, setDataHora] = useState(""); 
+  const [tarefaCadastrada, setTarefaCadastrada] = useState([]);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-  }
+  
 
   async function fetchTarefas() {
     const token = localStorage.getItem("token"); 
@@ -35,6 +34,48 @@ function ModalCriarTarefa({onClose}) {
     fetchTarefas();
   }, []);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token")
+
+    if (!token) {
+      alert("Você precisa estar logado para cadastrar tarefas");
+      return;
+    }
+
+    const dataHoraFormatada = dataHora.replace('T', ' ') + ':00';
+
+    try {
+      const response = await fetch("http://localhost:3000/api/tarefaFilho/criarTarefaFilho", {
+        method:'POST',  
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }, 
+        body: JSON.stringify({
+          tarefaId : tarefaEscolhida.id,
+          dataHora: dataHoraFormatada,
+        }),
+      })
+
+      if (!response.ok) throw new Error("Erro ao cadastrar tarefa");
+
+      const data = await response.json(); 
+      console.log("Tarefa cadstrada com sucesso", data);
+      setTarefaCadastrada(data); 
+
+      setDataHora("");
+      setTarefaEscolhida(null);
+      onClose(); 
+      
+    } catch (error) {
+      console.error(error);
+      console.log("Tarefa id", dataHoraFormatada);
+
+    }
+  }
+
   return (
     <div className="Container">
       <div className="container-modal">
@@ -44,6 +85,7 @@ function ModalCriarTarefa({onClose}) {
           <input
             type="datetime-local"
             name="usuario"
+            onChange={(e) => setDataHora(e.target.value)}
             required
           />
           <label>Tarefas</label>
@@ -63,7 +105,7 @@ function ModalCriarTarefa({onClose}) {
               </li>
             ))}
           </ul>
-          <label >Valor tarefa: {tarefaEscolhida.valorTarefa}</label>
+          <label >Valor tarefa: {tarefaEscolhida?.valorTarefa}</label>
           <button type="submit">Salvar</button>
           <button type="button" onClick={onClose}>Cancelar</button>
         </form>
