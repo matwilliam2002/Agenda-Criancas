@@ -8,5 +8,6 @@ router.post('/criarTarefa', authMiddleware, operacoesTrefa.create);
 router.get('/buscarTarefa', authMiddleware, operacoesTrefa.buscar); 
 router.patch('/atualizarTarefa', authMiddleware, operacoesTrefa.atualizar);
 router.get('/BuscarTiposTarefas', authMiddleware, operacoesTrefa.buscarTarefasFilho); 
+router.get('/buscarTiposTarefasDoFilho', authMiddleware, operacoesTrefa.buscarTarefasDofilho);
 
 module.exports = router; 

@@ -59,6 +59,20 @@ const operacoes = {
         }
     }, 
 
+    buscarTarefasDofilho: async (req, res) => {
+        try {
+            const idPai = req.usuario.id; 
+            const tarefas = await Tarefa.findAll({
+                where: { idPai }, 
+                attributes: ["id", "nomeTarefa", "valorTarefa"]
+            });
+            return res.status(200).json(tarefas);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: "Erro ao buscar tarefas" });
+        }
+    },
+
     atualizar: async (req, res) => {
         try {
             const {idTarefa, nomeTarefa, valorTarefa} = req.body; 

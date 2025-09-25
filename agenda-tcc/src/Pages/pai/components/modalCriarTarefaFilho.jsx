@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import "./modalCriarTarefaCrianca.css";
+import { useState, useEffect  } from "react";
+import "../../filho/components/modalCriarTarefaCrianca.css";
 
-function ModalCriarTarefa({ onClose, onTarefaCriada }) {
+function ModalCriarTarefa({onClose}) {
 
-  const [dadosTarefas, setDadosTarefas] = useState([]);
-  const [tarefaEscolhida, setTarefaEscolhida] = useState([]);
-  const [dataHora, setDataHora] = useState("");
+  const [dadosTarefas, setDadosTarefas] = useState([]); 
+  const [tarefaEscolhida, setTarefaEscolhida] = useState([]); 
+  const [dataHora, setDataHora] = useState(""); 
   const [tarefaCadastrada, setTarefaCadastrada] = useState([]);
 
-
+  
 
   async function fetchTarefas() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token"); 
     try {
       const response = await fetch("http://localhost:3000/api/tarefas/BuscarTiposTarefas", {
         method: "GET",
@@ -21,16 +21,16 @@ function ModalCriarTarefa({ onClose, onTarefaCriada }) {
         }
       })
 
-      const data = await response.json();
+      const data = await response.json(); 
       console.log("Dados tarefas: ", data);
-      setDadosTarefas(data);
-
+      setDadosTarefas(data); 
+      
     } catch (error) {
       alert("Deu erro")
     }
   }
 
-  useEffect(() => {
+    useEffect(() => {
     fetchTarefas();
   }, []);
 
@@ -48,28 +48,27 @@ function ModalCriarTarefa({ onClose, onTarefaCriada }) {
 
     try {
       const response = await fetch("http://localhost:3000/api/tarefaFilho/criarTarefaFilho", {
-        method: 'POST',
+        method:'POST',  
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
-        },
+        }, 
         body: JSON.stringify({
-          tarefaId: tarefaEscolhida.id,
+          tarefaId : tarefaEscolhida.id,
           dataHora: dataHoraFormatada,
         }),
       })
 
       if (!response.ok) throw new Error("Erro ao cadastrar tarefa");
 
-      const data = await response.json();
+      const data = await response.json(); 
       console.log("Tarefa cadstrada com sucesso", data);
-      setTarefaCadastrada(data);
+      setTarefaCadastrada(data); 
 
       setDataHora("");
       setTarefaEscolhida(null);
-      onTarefaCriada();
-      onClose();
-
+      onClose(); 
+      
     } catch (error) {
       console.error(error);
       console.log("Tarefa id", dataHoraFormatada);
@@ -96,7 +95,7 @@ function ModalCriarTarefa({ onClose, onTarefaCriada }) {
                 <label>
                   <input
                     type="radio"
-                    name="tarefa"
+                    name="tarefa"   
                     value={dadosTarefa.id}
                     checked={tarefaEscolhida?.id === dadosTarefa.id}
                     onChange={() => setTarefaEscolhida(dadosTarefa)}
