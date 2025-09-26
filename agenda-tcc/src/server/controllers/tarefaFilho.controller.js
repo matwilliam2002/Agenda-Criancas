@@ -1,5 +1,6 @@
 const TarefaFilho = require('../models/tarefaFilho');
 const Tarefa = require('../models/tarefa.model');
+const Filho = require('../models/user.model');
 
 const operacoesTarefasFilho = {
     create: async (req, res) => {
@@ -79,6 +80,39 @@ const operacoesTarefasFilho = {
             res.status(500).json({ error: "Erro ao criar tarefaFilho" });
         }
     },
+
+    concluirTarefa: async (req, res) => {
+        try {
+            const { filhoId, tarefaId, valor } = req.body;
+
+            console.log("Valores vindo do front: ", req.body);
+            
+
+            // 1. Marca a tarefa como concluída
+            const tarefaConcluida = await TarefaFilho.update(
+                { concluida: true },
+                { where: { id: tarefaId } }
+            );
+
+            // 2. Atualiza a pontuação do filho
+            const novaPontuacao = await Filho.increment("pontos", {
+                by: valor,
+                where: { id: filhoId } // 👈 cuidado, geralmente o campo no banco é "id"
+            });
+
+            // 3. Retorna tudo em uma resposta só
+            return res.status(200).json({
+                message: "Tarefa concluída e pontuação atualizada com sucesso",
+                tarefaConcluida,
+                novaPontuacao,
+            });
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Erro ao atualizar tarefa e pontuação" });
+        }
+    },
+
 }
 
 module.exports = operacoesTarefasFilho; 

@@ -5,15 +5,16 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ptBrLocate from "@fullcalendar/core/locales/pt-br";
 import ModalCriarTarefa from ".//components/modalCriarTarefaCalendarioFilho";
-
-
-
+import ModalEditarTarefa from "../pai/components/modalEditarTarefaFilho";
+//import "./calendarioPai.css"; 
 
 function CalendarioPai() {
     const [eventos, setEventos] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [filhoSelecionado, setFilhoSelecionado] = useState(null);
     const [dadosFetch, setDadosFetch] = useState([]);
+    const [isOpenModalEditar, setIsOpenModalEditar] = useState(false);
+    const [tarefaSelecionada, setTarefaSelecionada] = useState([]);
     const navigate = useNavigate();
 
     async function fetchFilhos() {
@@ -99,37 +100,56 @@ function CalendarioPai() {
     }, [filhoSelecionado]);
 
 
-    function handleDirecionamento() {
+    function handleDirecionamentoConfiguracao() {
         navigate('/cadastroFilho')
     }
 
-    function handleTarefa() {
+    function handleDirecionamentoTarefa() {
         navigate('/cadastroTarefa')
     }
 
-    const handleCreate = () => {
-        setIsOpen(!isOpen);
-    };
-
-    function handleClose() {
-        setIsOpen(!isOpen);
+    function handleDirecionamentoPremio() {
+        navigate('/cadastroPremio')
     }
+
+    const handleOpenModalCriar = () => setIsOpen(true);
+    const handleCloseModalCriar = () => setIsOpen(false);
+
+    const handleOpenModalEditar = (tarefa) => {
+        setTarefaSelecionada(tarefa);
+        setIsOpenModalEditar(true);
+    };
+    const handleCloseModalEditar = () => setIsOpenModalEditar(false);
 
     const atualizarEventos = async () => {
         if (filhoSelecionado?.id) {
-            await fetchTarefasFilho(); // atualiza os eventos
+            await fetchTarefasFilho(); 
         }
     };
-    
+
+    const eventClick = (info) => {
+        const tarefa = {
+            id: info.event.id,
+            title: info.event.title,
+            start: info.event.start,
+            ...info.event.extendedProps,
+            filhoId: filhoSelecionado.id
+        };
+        handleOpenModalEditar(tarefa);
+    };
+
+
     console.log("Filho selecionado: ", filhoSelecionado);
 
+
     return (
-        <div>
+        <div className='container'>
             <h1>Voce esta no calendario do Pai</h1>
-            <button onClick={handleDirecionamento} >CONFIGURACAO</button>
-            <button onClick={handleTarefa}>Tarefas</button>
+            <button onClick={handleDirecionamentoConfiguracao} >CONFIGURACAO</button>
+            <button onClick={handleDirecionamentoTarefa}>Tarefas</button>
+            <button onClick={handleDirecionamentoPremio}>Premios</button>
             <ul>
-                <h1>Escolha seu filho</h1>
+                <h2>Escolha seu filho</h2>
                 {dadosFetch.map((dadoFetch) => {
                     return (
                         <li key={dadoFetch.id}>
@@ -157,7 +177,7 @@ function CalendarioPai() {
                     customButtons={{
                         botaoAdicionar: {
                             text: "Adicionar",
-                            click: handleCreate
+                            click: handleOpenModalCriar
                         }
                     }}
                     headerToolbar={{
@@ -165,16 +185,36 @@ function CalendarioPai() {
                         center: "botaoAdicionar",
                         right: "prev,next today"
                     }}
+
+                    eventClassNames={(info) => {
+                        if (info.event.extendedProps.concluida == true) {
+                            return ["evento-concluido"];
+                        } else {
+                            return ["evento-pendente"];
+                        }
+                    }}
+
+                    eventClick={eventClick}
                 />
 
                 {isOpen && filhoSelecionado && (
                     <ModalCriarTarefa
                         dadosFilho={filhoSelecionado}
-                        onClose={handleClose}
-                        onTarefaCriada={atualizarEventos} // <<< função do pai
+                        onClose={handleCloseModalCriar}
+                        onTarefaCriada={atualizarEventos}
 
                     />
                 )}
+
+                {
+                    isOpenModalEditar && tarefaSelecionada && (
+                        <ModalEditarTarefa
+                            tarefa={tarefaSelecionada}
+                            onClose={handleCloseModalEditar}
+                            onTaeraConcluida={atualizarEventos}
+                        />
+                    )
+                }
 
             </div>
         </div>

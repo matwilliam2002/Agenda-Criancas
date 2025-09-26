@@ -62,18 +62,26 @@
   border: 2px solid #f39c12 !important;
 }
 
-/* Estilo dos eventos */
-.fc-event {
-  background-color: #8e44ad !important;
+
+.fc-event.evento-concluido {
+  background-color: green !important;
+  border-color: darkgreen !important;
+  color: white !important;
+}
+
+.fc-event.evento-pendente {
+  background-color: rgb(255, 60, 60) !important;
+  border-color: darkred !important;
+  color: white !important;
   border: none !important;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
   padding: 4px 6px;
-  color: white !important;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 
 .fc-event:hover {
   transform: scale(1.05);
