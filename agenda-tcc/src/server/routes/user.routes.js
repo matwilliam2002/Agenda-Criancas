@@ -13,6 +13,7 @@ router.post('/login', validacao.login); // ROta para logar
 router.post('/createFilho', authMiddleware, operacoes.createFilho); 
 router.get('/mostrarFilho', authMiddleware, operacoes.mostrarFilho);  
 router.patch('/atualizarFilho', authMiddleware, operacoes.atualizarFilho); 
+router.get('/buscarDadosFilho', authMiddleware, operacoes.buscarDadosFilho); 
 
 
 module.exports = router; 

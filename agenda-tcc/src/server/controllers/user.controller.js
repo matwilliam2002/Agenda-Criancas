@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 const operacoes = {
-    create: async (req, res) => {
+    create: async (req, res) => { //Criar usuário normal
         const { senha, email } = req.body;
 
         try {
@@ -30,7 +30,7 @@ const operacoes = {
         }
     },
 
-    createFilho: async(req, res) => {
+    createFilho: async(req, res) => { // Pai criando filho
         const {usuario, senha} = req.body; 
 
         try{
@@ -88,6 +88,16 @@ const operacoes = {
             }
             await filho.update({usuario, senha: senhaEncriptografada}); 
             return res.json({message: "Filho atualizado com sucesso", filho}); 
+        } catch (error) {
+            return res.status(500).json({ erro: "Erro ao atualizar filho", detalhes: error.message });
+        }
+    }, 
+
+    buscarDadosFilho: async (req, res) => {
+        try {
+            const filhoId = req.usuario.id; 
+            const dados = await Usuario.findByPk(filhoId); 
+            res.json(dados); 
         } catch (error) {
             return res.status(500).json({ erro: "Erro ao atualizar filho", detalhes: error.message });
         }

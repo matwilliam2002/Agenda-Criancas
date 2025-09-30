@@ -1,0 +1,47 @@
+/* container do card */
+.pontos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  margin:50px 100px 0px 100px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 280px;
+  justify-content: left;
+  width: 400px;
+  cursor: pointer;
+}
+
+/* card de pontos */
+.pontos-card {
+  color: #000000;
+  padding: 25px 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* animação no hover */
+.pontos-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px  #B16767;
+  border-radius: 2px;
+}
+
+.pontos-container>img {
+  height: 130px;
+}
+
+/* título */
+.pontos-titulo {
+  font-size: 42px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* valor dos pontos */
+.pontos-valor {
+  font-size: 40px;
+  font-weight: 900;
+  color: black;
+}

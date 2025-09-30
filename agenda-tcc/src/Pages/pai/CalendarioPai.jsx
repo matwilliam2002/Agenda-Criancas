@@ -6,7 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import ptBrLocate from "@fullcalendar/core/locales/pt-br";
 import ModalCriarTarefa from ".//components/modalCriarTarefaCalendarioFilho";
 import ModalEditarTarefa from "../pai/components/modalEditarTarefaFilho";
-//import "./calendarioPai.css"; 
+import "./calendarioPai.css"; 
 
 function CalendarioPai() {
     const [eventos, setEventos] = useState([]);

@@ -1,0 +1,88 @@
+/* Fundo do modal */
+.Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); /* fundo escuro translúcido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Caixa do modal */
+.container-modal {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  animation: aparecer 0.3s ease-out;
+}
+
+/* Título */
+.container-modal h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Botões */
+.container-modal button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Botão concluir */
+.container-modal button[type="button"]:first-of-type {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.container-modal button[type="button"]:first-of-type:hover {
+  background-color: #45a049;
+}
+
+/* Botão excluir */
+.container-modal button[type="submit"] {
+  background-color: #f44336;
+  color: white;
+}
+
+.container-modal button[type="submit"]:hover {
+  background-color: #d32f2f;
+}
+
+/* Botão cancelar */
+.container-modal button:last-of-type {
+  background-color: #ddd;
+  color: #333;
+}
+
+.container-modal button:last-of-type:hover {
+  background-color: #bbb;
+}
+
+/* Animação suave de entrada */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

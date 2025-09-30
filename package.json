@@ -4,7 +4,8 @@
     "@fullcalendar/interaction": "^6.1.19",
     "@fullcalendar/react": "^6.1.19",
     "express": "^5.1.0",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "react-icons": "^5.5.0"
   },
   "name": "agenda-criancas",
   "version": "1.0.0",

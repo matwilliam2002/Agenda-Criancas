@@ -1,0 +1,121 @@
+/* Fundo escurecido do modal */
+.Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* sempre na frente */
+}
+
+/* Caixa central do modal */
+.Container > div {
+  background: #ffffff;
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  width: auto;
+  animation: fadeIn 0.3s ease;
+  height: auto;
+}
+
+.tarefa-concluida {
+  background-color: #d4edda;
+  /* verde suave */
+  border: 1px solid #c3e6cb;
+  /* borda delicada */
+  color: #035015;
+  /* texto verde escuro */
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  list-style: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarefa-nao-concluida {
+  background-color: #f8d7da;
+  /* vermelho suave */
+  border: 1px solid #f5c6cb;
+  color: #ff0019;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  list-style: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Título */
+.Container h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Lista de tarefas */
+.Container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.Container li:hover {
+  background: #e8e8e8;
+  transform: translateX(4px);
+}
+
+/* Scroll suave */
+.Container > div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.Container > div::-webkit-scrollbar-thumb {
+  background: #b16767; /* cor que você usou antes */
+  border-radius: 10px;
+}
+
+.btnCancelar {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #b16767;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btnCancelar:hover {
+  background-color: #933c3c;
+  transform: translateY(-2px);
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

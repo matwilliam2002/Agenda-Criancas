@@ -1,5 +1,5 @@
 import { useState, useEffect  } from "react";
-import "../../filho/components/modalCriarTarefaCrianca.css";
+//import "../../filho/components/modalCriarTarefaCrianca.css";
 
 function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
 
