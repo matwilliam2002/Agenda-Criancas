@@ -2,7 +2,7 @@
 .container {
   max-width: 100vw;
   height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   padding: 30px;
   font-family: 'Arial', sans-serif;
   background-color: #FAEED1;
@@ -64,6 +64,11 @@
   border: 3px solid #B16767;
 }
 
+.icon-amanha {
+  height: 70px;
+  justify-content: center;
+}
+
 .cardDiaHoje ul {
   overflow-y: auto;
   overflow-x: hidden;
@@ -98,6 +103,27 @@ label>p {
   cursor: pointer;
   list-style: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-lista {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* estimado tamanho do ícone — ajuste conforme necessidade */
+.card-lista img {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
 }
 
 .tarefa-nao-concluida {
@@ -111,9 +137,30 @@ label>p {
   cursor: pointer;
   list-style: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 
+
+.tarefa-analise {
+  background-color: #ecde1a;
+  /* vermelho suave */
+  border: 1px solid #dfe224;
+  color: #ff0019;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  list-style: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
 /* Efeito ao passar o mouse */
 .tarefa-concluida:hover,
@@ -135,7 +182,11 @@ label>p {
   margin: 0;
   font-size: 50px;
   color: #333;
+  align-items: center;
+  display: flex;
+  gap: 20px;
 }
+
 
 .cardDiaHoje h2 {
   margin: 0;
@@ -145,7 +196,7 @@ label>p {
 
 /* labels */
 .cardDia label {
-  font-size: 16px;
+  font-size: 36px;
   color: #555;
 }
 
@@ -153,4 +204,8 @@ label>p {
   font-size: 20px;
   color: #555;
   font-weight: bold;
+}
+
+.cardDiaHoje ul li img {
+  height: 30px;
 }

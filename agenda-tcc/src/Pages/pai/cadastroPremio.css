@@ -1,0 +1,240 @@
+.container-cadastro-premios {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0 30px;
+  margin: 0;
+  gap: 50px;
+  align-items: center;
+  background-color: #FFE8AC;
+  min-height: 100vh;
+}
+
+.container-cadastro-premios > h1 {
+  font-family: "Comic Neue", cursive;
+  font-size: 4em;
+  background-color: #ffffffb8;
+  border-radius: 10px;
+  padding: 20px 30px;
+  margin: 20px 60px 0 60px;
+}
+
+.blocos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  gap: 50px;
+  padding: 10px;
+}
+
+.container-premios {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.formulario-adicionar-premio {
+  display: flex;
+  flex-direction: row; /* ✅ deixa tudo em linha */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: #A8E6CF;
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* ✅ permite quebrar se a tela for pequena */
+}
+
+.formulario-adicionar-premio > label {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.1em;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formulario-adicionar-premio > input {
+  flex: 1; /* ✅ ocupa o espaço proporcional */
+  min-width: 180px;
+  padding: 10px 14px;
+  border: 2px solid #ffffffb8;
+  border-radius: 10px;
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.formulario-adicionar-premio > input:focus {
+  border-color: #4AA3CF;
+  box-shadow: 0 0 6px rgba(74, 163, 207, 0.4);
+}
+
+.formulario-adicionar-premio > button {
+  font-family: 'Comic Neue', cursive;
+  background-color: #4AA3CF;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.formulario-adicionar-premio > button:hover {
+  background-color: #2f90b9;
+  transform: scale(1.05);
+}
+
+.container-lista-premios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  padding: 30px;
+  background-color: #ffffffb8;
+  width: 95%; /* ✅ mantém o mesmo tamanho */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Comic Neue", cursive;
+  transition: box-shadow 0.3s ease;
+}
+
+.container-lista-premios:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.container-lista-premios > h2 {
+  font-size: 2em;
+  color: #333;
+  background-color: #A8E6CF;
+  padding: 10px 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  letter-spacing: 1px;
+}
+
+.container-lista-premios ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.premios-ativos {
+  background-color: #f7fbff;
+  border: 2px solid #A7D8F0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  font-size: 2em;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.premios-ativos:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(74, 163, 207, 0.2);
+}
+
+.premios-ativos img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #7AB4CE;
+  background-color: #fff;
+}
+
+.premios-desativados {
+  background-color: #f7fbff7c;
+  border: 2px solid #a7d8f073;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  font-size: 2em;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.premios-desativados:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(74, 163, 207, 0.2);
+}
+
+.premios-desativados img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #7AB4CE;
+  background-color: #fff;
+}
+
+
+
+.cardPremios {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.botao-desativar {
+  font-family: "Comic Neue", cursive;
+  background-color:crimson;
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 25px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.botao-desativar:hover {
+  background-color:crimson;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.botao-ativar {
+  font-family: "Comic Neue", cursive;
+  background-color: #b8f16d;
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 25px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.botao-ativar:hover {
+  background-color:#a4ec46;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+

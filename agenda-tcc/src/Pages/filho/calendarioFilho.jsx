@@ -1,10 +1,15 @@
-import { useState, useEffect, useRef, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../filho/calendarioFilho.css";
 import Pontos from "./components/pontosFilho";
 import Check from ".//..//..//assets/verificar.png";
 import Wrong from ".//..//..//assets/cruz.png";
 import ModalConcluir from "./components/modalConcluirTarefa";
 import ModalMostrarTarefa from "./components/modalMostrarTarefa";
+import { useNavigate } from 'react-router-dom';
+import IconAmanha from '../../assets/agenda.png';
+import iconHora from '../../assets/clock.png';
+import iconValor from '../../assets/coin.png';
+import iconTarefa from '../../assets/task.png';
 
 
 
@@ -21,6 +26,8 @@ function CalendarioFilho() {
   const [modalMostrarTarefa, setmodalMostrartarefa] = useState(false);
   const [diaSelecionado, setDiaSelecionado] = useState(null);
   const pontosRef = useRef();
+
+
 
   async function fetchTarefasFilho() {
     const token = localStorage.getItem("token")
@@ -120,7 +127,7 @@ function CalendarioFilho() {
   }
 
   function handleModal(diaHoje) {
-    if (diaHoje.concluida) return; // não deixa abrir de novo
+    if (diaHoje.concluida==='CONCLUIDA'||diaHoje.concluida==='ANALISE') return; // não deixa abrir de novo
     setIsOpen(true);
     setTarefaSelecionada(diaHoje);
   }
@@ -148,7 +155,15 @@ function CalendarioFilho() {
 
   function handleCloseModalMostrarTarefa() {
     setmodalMostrartarefa(false);
-    setDiaSelecionado(null); 
+    setDiaSelecionado(null);
+  }
+
+  const navigate = useNavigate();
+
+  function handleDirecionamentoPontos() {
+    console.log("vOCE ESTA NA PAGINA");
+    navigate('/premios');
+
   }
 
 
@@ -157,9 +172,9 @@ function CalendarioFilho() {
       <h1 className="tituloCalendario">Suas tarefas</h1>
       <Pontos
         ref={pontosRef}
+        onClick={handleDirecionamentoPontos}
       />
       <div className="cards">
-
         <div className="cardDia"
           onClick={() => handleModalMostrarTarefa("ontem")}
         >
@@ -180,10 +195,30 @@ function CalendarioFilho() {
               return (
                 <li key={diaHoje.id}
                   onClick={() => handleModal(diaHoje)}
-                  className={diaHoje.concluida ? "tarefa-concluida" : "tarefa-nao-concluida"}
+                  className={
+                    diaHoje.concluida === "CONCLUIDA"
+                      ? "tarefa-concluida"
+                      : diaHoje.concluida === "PENDENTE"
+                        ? "tarefa-nao-concluida"
+                        : diaHoje.concluida === "ANALISE"
+                          ? "tarefa-analise"
+                          : ""
+                  }
+
 
                 >
-                  Hora: {horaFormatada} // Nome tarefa: {diaHoje.tarefa?.nomeTarefa} // Valor tarefa: {diaHoje.tarefa.valorTarefa} Pontos
+                  <div className="card-lista">
+                    <img className="icon-lista" src={iconHora} alt="" /> {horaFormatada}
+                  </div>
+
+                  <div className="card-lista">
+                    <img className="icon-lista" src={iconTarefa} alt="" /> {diaHoje.tarefa?.nomeTarefa}
+                  </div>
+
+                  <div className="card-lista">
+                    <img className="icon-lista" src={iconValor} alt="" /> {diaHoje.tarefa.valorTarefa} Pontos
+                  </div>
+
                 </li>
               );
             })}
@@ -191,7 +226,7 @@ function CalendarioFilho() {
         </div>
 
         <div className="cardDia" onClick={() => handleModalMostrarTarefa("amanha")}>
-          <h2>Amanhã</h2>
+          <h2>Amanhã <img className="icon-amanha" src={IconAmanha} alt="" /> </h2>
           <label> Amanhã vc terá: {amanha.length} Tarefas</label>
 
         </div>

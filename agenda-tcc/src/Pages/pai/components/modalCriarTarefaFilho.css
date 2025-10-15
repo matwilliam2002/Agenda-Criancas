@@ -1,0 +1,155 @@
+/* Fundo escurecido do modal */
+.Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(3px);
+}
+
+/* Caixa principal do modal */
+.container-modal {
+  background: #fff9e6;
+  border-radius: 25px;
+  width: 500px;
+  max-width: 90%;
+  padding: 40px 35px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  animation: slideIn 0.4s ease;
+}
+
+/* Animação de entrada suave */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Título */
+.container-modal h1 {
+  font-family: "Comic Neue", cursive;
+  font-size: 36px;
+  color: #1d3557;
+  margin-bottom: 25px;
+}
+
+/* Labels */
+.container-modal label {
+  display: block;
+  font-size: 20px;
+  color: #1d3557;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Input de data/hora */
+.container-modal input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #a8dadc;
+  outline: none;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  transition: border-color 0.3s;
+}
+
+.container-modal input[type="datetime-local"]:focus {
+  border-color: #457b9d;
+}
+
+/* Lista de tarefas */
+.container-modal ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.container-modal li {
+  margin-bottom: 10px;
+  background-color: #f1faee;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.container-modal li:hover {
+  background-color: #e3f2f1;
+}
+
+/* Radio */
+.container-modal input[type="radio"] {
+  accent-color: #457b9d;
+  transform: scale(1.2);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Texto do valor */
+.container-modal label:last-of-type {
+  font-size: 18px;
+  color: #457b9d;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* Botões */
+.container-modal button {
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.container-modal button[type="submit"] {
+  background-color: #2a9d8f;
+  color: white;
+}
+
+.container-modal button[type="submit"]:hover {
+  background-color: #21867d;
+}
+
+.container-modal button[type="button"] {
+  background-color: #e63946;
+  color: white;
+}
+
+.container-modal button[type="button"]:hover {
+  background-color: #b7242f;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .container-modal {
+    padding: 25px;
+  }
+
+  .container-modal h1 {
+    font-size: 28px;
+  }
+
+  .container-modal button {
+    width: 100%;
+    font-size: 18px;
+  }
+}

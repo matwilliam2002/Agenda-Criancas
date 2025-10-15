@@ -26,19 +26,15 @@ const operacoesTarefasFilho = {
         }
     },
 
-    buscarTarefasCalendarioFilho: async (req, res) => {
-
-    },
-
     criarTarefaFilho: async (req, res) => {
         try {
             const { filhoId, tarefaId, dataHora } = req.body;
+            
 
             const novaTarefaFilho = await TarefaFilho.create({
                 filhoId,
                 tarefaId,
                 dataHora,
-                concluida: false,
             })
             return res.status(201).json({ message: 'Tarefa criada com sucesso', novaTarefaFilho });
 
@@ -53,13 +49,10 @@ const operacoesTarefasFilho = {
 
             console.log("Valores vindo do front: ", req.body);
 
-
-
             const tarefaConcluida = await TarefaFilho.update(
-                { concluida: true },
+                { concluida: 'CONCLUIDA' },
                 { where: { id: tarefaId } }
             );
-
 
             const novaPontuacao = await Filho.increment("pontos", {
                 by: valor,
@@ -81,27 +74,17 @@ const operacoesTarefasFilho = {
 
     concluirTarefaFilho: async (req, res) => {
         try {
-            const {tarefaId, valor } = req.body;
+            const {tarefaId} = req.body;
 
-            const filhoId = req.usuario.id; 
-
-
-            const tarefaConcluida = await TarefaFilho.update(
-                { concluida: true },
+            const tarefaPendente = await TarefaFilho.update(
+                { concluida: "ANALISE" },
                 { where: { id: tarefaId } }
             );
 
 
-            const novaPontuacao = await Filho.increment("pontos", {
-                by: valor,
-                where: { id: filhoId }
-            });
-
-
             return res.status(200).json({
-                message: "Tarefa concluída e pontuação atualizada com sucesso",
-                tarefaConcluida,
-                novaPontuacao,
+                message: "Tarefa pendente",
+                tarefaPendente,
             });
 
         } catch (error) {

@@ -14,6 +14,9 @@ router.post('/createFilho', authMiddleware, operacoes.createFilho);
 router.get('/mostrarFilho', authMiddleware, operacoes.mostrarFilho);  
 router.patch('/atualizarFilho', authMiddleware, operacoes.atualizarFilho); 
 router.get('/buscarDadosFilho', authMiddleware, operacoes.buscarDadosFilho); 
+router.get('/mostrarFilhosAtivos', authMiddleware, operacoes.mostrarFilhosAtivos), 
+router.patch('/desativarFilho', authMiddleware, operacoes.desativar); 
+router.patch('/ativarFilho', authMiddleware, operacoes.ativar), 
 
 
 module.exports = router; 

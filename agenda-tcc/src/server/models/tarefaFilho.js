@@ -13,9 +13,9 @@ const TarefaFilho = sequelize.define('tarefasFilhos', {
     },
 
     concluida: {
-        type: Sequelize.BOOLEAN, 
+        type: Sequelize.ENUM('PENDENTE', 'ANALISE', 'CONCLUIDA'), 
         allowNull: false,
-        defaultValue: false
+        defaultValue: 'PENDENTE',
     }, 
     
     dataHora: {

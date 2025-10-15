@@ -46,6 +46,12 @@ const Usuario = database.define('usuarios',{
             model: 'usuarios', 
             key: 'id'
         }
+    }, 
+
+    status: {
+        type: Sequelize.ENUM("ATIVO", "DESATIVADO"), 
+        allowNull: false, 
+        defaultValue: "ATIVO", 
     }
 }); 
 

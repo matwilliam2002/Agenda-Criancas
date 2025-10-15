@@ -3,6 +3,8 @@ import "./modalMostrarTarefa.css";
 function ModalEditarTarefa({ diaEscolhido, diaOntem, diaAmanha, onClose }) {
     console.log("Dia escolhido: ", diaEscolhido);
     console.log("Dia ontem: ", diaOntem);
+    console.log('Dia amanha: ', diaAmanha);
+    
 
 
 
@@ -40,7 +42,7 @@ function ModalEditarTarefa({ diaEscolhido, diaOntem, diaAmanha, onClose }) {
                             return (
                                 <li key={amanha.id}
                                     className={amanha.concluida ? "tarefa-concluida" : "tarefa-nao-concluida"}>
-                                    hora: {horaFormatada} // Nome tarefa: {amanha.tarefa.nomeTarefa} // Valor: {amanha.tarefa.valorTarefa}
+                                    hora: {horaFormatada} // Nome tarefa: {amanha?.tarefa?.nomeTarefa ?? "Nenhuma tarefa agendada"}// Valor: {amanha?.tarefa?.valorTarefa??'Nenhum valor'}
                                 </li>
                             )
                         })}

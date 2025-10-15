@@ -1,181 +1,253 @@
-.Container {
+.Container-cadastro-filho {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin: 0 auto;
+  padding: 40px 0 30px;
+  flex-direction: column;
   justify-content: center;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh;
-}
-
-/* Estilização do formulário de cadastro */
-.formCadastroFilho {
-  background-color: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  gap: 50px;
+  background-color: #FFE8AC;
+  min-height: 100vdh;
   width: 100%;
-  max-width: 450px;
-  height: fit-content;
 }
 
-.formCadastroFilho h1 {
-  color: #4e54c8;
-  margin-bottom: 25px;
-  text-align: center;
-  font-size: 28px;
-  position: relative;
+.Container-cadastro-filho>h1 {
+  font-family: "Comic Neue", cursive;
+  font-size: 4em;
+  background-color: #ffffffb8;
+  border-radius: 10px;
+  padding: 20px 30px;
+  margin: 20px 60px 0 60px;
 }
 
-.formCadastroFilho h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background-color: #8f94fb;
-  border-radius: 2px;
+.container-cards {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+  margin-bottom: 60px;
 }
 
-.formCadastroFilho form {
+.card-esquerda-form {
   display: flex;
   flex-direction: column;
+  width: 40%;
+  height: 550px;
+  background-color: #ffffffb8;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.formCadastroFilho label {
-  margin-bottom: 8px;
-  font-weight: 600;
+
+
+.form-cadastro-filho {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #A8E6CF;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 65%;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-cadastro-filho>h2 {
+  font-size: 45px;
+}
+
+.form-cadastro-filho>label {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.2em;
   color: #333;
+  margin-bottom: 5px;
+  align-self: flex-start;
 }
 
-.formCadastroFilho input {
+.form-cadastro-filho>input {
+  width: 100%;
   padding: 12px 15px;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.formCadastroFilho input:focus {
-  outline: none;
-  border-color: #4e54c8;
-  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);
-}
-
-.formCadastroFilho button {
-  background: linear-gradient(to right, #4e54c8, #8f94fb);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 10px;
-}
-
-.formCadastroFilho button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
-}
-
-/* Estilização da lista de filhos */
-.ListarFilhos {
-  background-color: white;
+  border: 2px solid #ffffffb8;
   border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.form-cadastro-filho>input:focus {
+  border-color: #FFD166;
+  /* destaque laranja suave */
+  background-color: #fffef0;
+}
+
+.form-cadastro-filho>button {
   width: 100%;
-  max-width: 650px;
+  padding: 12px;
+  font-size: 1.2em;
+  font-family: 'Lexend', sans-serif;
+  color: #fff;
+  background-color: #06A77D;
+  /* verde alegre */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.ListarFilhos h1 {
-  color: #4e54c8;
-  margin-bottom: 25px;
-  text-align: center;
-  font-size: 28px;
-  position: relative;
+/* efeito hover */
+.form-cadastro-filho>button:hover {
+  background-color: #04A065;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-.ListarFilhos h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background-color: #8f94fb;
-  border-radius: 2px;
+/* efeito ao clicar */
+.form-cadastro-filho>button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.ListarFilhos ul {
-  list-style-type: none;
+
+.card-right-list {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 550px;
+  background-color: #ffffffb8;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.ListarFilhos li {
-  background-color: #f5f7fa;
-  margin-bottom: 15px;
-  padding: 15px 20px;
-  border-radius: 8px;
+.listar-filhos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background-color: #ffffffb8;
+  height: 40%;
+  width: 80%;
+  justify-content: center;
+}
+
+.listar-filhos>ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 550px;
+}
+
+.filho-ativo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.2s ease;
+  background-color: #A8E6CF;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 }
 
-.ListarFilhos li:hover {
-  transform: translateX(5px);
+.filho-ativo:hover {
+  background-color: #9ed1eb;
+  transform: translateY(-2px);
 }
 
-.ListarFilhos button {
-  background-color: #ff6b6b;
-  color: white;
+.filho-desativado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dae7e2;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.filho-desativado:hover {
+  background-color: #9ed1eb;
+  transform: translateY(-2px);
+}
+
+.editar-filho {
+  background-color: #ffee00;
+  color: rgb(0, 0, 0);
   border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.9em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.ListarFilhos button:hover {
-  background-color: #ff5252;
+.editar-filho:hover {
+  background-color: #fff677;
+  transform: scale(1.05);
 }
 
-/* Mensagem de erro */
-.ListarFilhos p {
-  background-color: #ffebee;
-  color: #d32f2f;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 500;
+.btn-desativar {
+  background-color: crimson;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .Container {
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-  }
-  
-  .formCadastroFilho, .ListarFilhos {
-    max-width: 100%;
-    padding: 20px;
-  }
-  
-  .ListarFilhos li {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
+.btn-desativar:hover {
+  background-color: rgba(218, 23, 62, 0.842);
+  transform: scale(1.05);
+}
+
+.btn-ativar {
+  background-color: #b8f16d;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ativar:hover {
+  background-color: #97ff10bb;
+  transform: scale(1.05);
+}
+
+.container-buttons{
+  display: flex;
+  gap: 15px;
 }

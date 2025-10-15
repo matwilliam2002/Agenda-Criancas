@@ -1,5 +1,5 @@
 import { useState, useEffect  } from "react";
-//import "../../filho/components/modalCriarTarefaCrianca.css";
+import './modalCriarTarefaFilho.css';
 
 function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
 
@@ -15,7 +15,7 @@ function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
   async function fetchTarefas() {
     const token = localStorage.getItem("token"); 
     try {
-      const response = await fetch("http://localhost:3000/api/tarefas/buscarTiposTarefasDoFilho", {
+      const response = await fetch("http://localhost:3000/api/tarefas/buscarTarefasAtivas", {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -95,6 +95,7 @@ function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
           <label>Tarefas</label>
           <ul>
             {dadosTarefas.map((dadosTarefa) => (
+             
               <li key={dadosTarefa.id}>
                 <label>
                   <input
@@ -103,6 +104,7 @@ function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
                     value={dadosTarefa.id}
                     checked={tarefaEscolhida?.id === dadosTarefa.id}
                     onChange={() => setTarefaEscolhida(dadosTarefa)}
+                    required
                   />
                   {dadosTarefa.nomeTarefa}
                 </label>

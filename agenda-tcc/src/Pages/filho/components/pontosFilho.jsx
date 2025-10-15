@@ -1,8 +1,10 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import ".//../components/pontosFilho.css";
-import Trofeu from "..//..//..//assets/trofeu.png"
+import Trofeu from '../../../assets/trofeu.png'
 
 const Pontos = forwardRef((props, ref) =>{
+
+    const { onClick } = props;
 
     const [dadosFilho, setDadosFilho] = useState([]);
 
@@ -36,6 +38,8 @@ const Pontos = forwardRef((props, ref) =>{
         }
     }
 
+    
+
     useEffect(() => {
         fetchPontosFilho();
     }, []);
@@ -52,11 +56,12 @@ const Pontos = forwardRef((props, ref) =>{
 
     useImperativeHandle(ref, () => ({
         atualizarPontos,
+        
     }));
 
 
     return (
-        <div className="pontos-container">
+        <div className="pontos-container" onClick={onClick}>
             <div className="pontos-card">
                 <div className="pontos-valor">{dadosFilho.pontos ?? 0}</div>
                 <div className="pontos-titulo"><p>Pontos</p></div>

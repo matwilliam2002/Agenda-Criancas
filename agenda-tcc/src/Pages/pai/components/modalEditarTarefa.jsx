@@ -1,4 +1,4 @@
-import { use, useState } from 'react';
+import { useState } from 'react';
 import './modalEditarTarefa.css'; 
 
 function ModalCriarTarefa({tarefa, onClose}) {
@@ -50,7 +50,7 @@ function ModalCriarTarefa({tarefa, onClose}) {
 
     return(
         <div className="modalCriarTarefa" onSubmit={handleSubmit}>
-            <form>
+            <form className='form-editar-tarefa'>
                 <h1>Editar tarefa</h1>
                 <label> Nome Tarefa</label>
                 <input 
@@ -66,11 +66,13 @@ function ModalCriarTarefa({tarefa, onClose}) {
                 required
                 />
                 <button 
+                    className='confirmar-editar-tarefa'
                     type='submit'
                 >
                     Salvar
                 </button>
                 <button 
+                className='btn-cancelar-editar-tarefa'
                 type="button" 
                 onClick={onClose}
                 >

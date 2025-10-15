@@ -2,21 +2,28 @@ const express = require('express');
 const sequelize = require('..//database/db'); // ajuste o caminho conforme seu projeto
 const app = express();
 const cors = require('cors');
+const path = require("path");
+
 
 const userRouter = require('./routes/user.routes');
 const premioRouter = require('./routes/premio.routes');
 const tarefaRouter = require('./routes/tarefa.routes');
 const tarefaFilhoRouter = require('../server/routes/tarefaFilho.routes')
+const resgatePremio = require('./routes/resgatePremios.routes')
 
 app.use(cors({ origin: 'http://localhost:3001' })); // permite só do frontend
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/uploadsPremios", express.static(path.join(__dirname, "middllewares/uploadPremios/imagensPremios")));
+
 
 
 app.use('/api/users', userRouter);
 app.use('/api/premios', premioRouter);
 app.use('/api/tarefas', tarefaRouter);
 app.use('/api/tarefaFilho', tarefaFilhoRouter); 
+app.use('/api/resgate', resgatePremio); 
 
 app.listen(3000, () =>{
     console.log("Servidor rodando na porta 3000");

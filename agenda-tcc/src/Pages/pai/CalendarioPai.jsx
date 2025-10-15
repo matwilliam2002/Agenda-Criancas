@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ptBrLocate from "@fullcalendar/core/locales/pt-br";
-import ModalCriarTarefa from ".//components/modalCriarTarefaCalendarioFilho";
+import ModalCriarTarefa from ".//components/modalCriarTarefaCalendario";
 import ModalEditarTarefa from "../pai/components/modalEditarTarefaFilho";
-import "./calendarioPai.css"; 
+import NavBar from '../pai/components/navBar';
+import './calendarioPai.css';
+
 
 function CalendarioPai() {
     const [eventos, setEventos] = useState([]);
@@ -15,7 +16,7 @@ function CalendarioPai() {
     const [dadosFetch, setDadosFetch] = useState([]);
     const [isOpenModalEditar, setIsOpenModalEditar] = useState(false);
     const [tarefaSelecionada, setTarefaSelecionada] = useState([]);
-    const navigate = useNavigate();
+    const [dadosResgate, setDadosResgate] = useState([])
 
     async function fetchFilhos() {
         const token = localStorage.getItem("token")
@@ -25,7 +26,7 @@ function CalendarioPai() {
         }
 
         try {
-            const response = await fetch("http://localhost:3000/api/users/mostrarFilho", {
+            const response = await fetch("http://localhost:3000/api/users/mostrarFilhosAtivos", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,16 +67,23 @@ function CalendarioPai() {
             const data = await response.json();
             console.log("Tarefas trazidas:", data);
 
-            const eventosFormatados = data.map(a => ({
-                id: a.id,
-                title: a.tarefa ? a.tarefa.nomeTarefa : "Sem nome",
-                start: a.dataHora,
-                extendedProps: {
-                    concluida: a.concluida,
-                    tarefaId: a.tarefaId,
-                    valor: a.tarefa ? a.tarefa.valorTarefa : "sem valor",
-                }
-            }))
+
+            const eventosFormatados = data.map(a => {
+                const inicio = new Date(a.dataHora);
+                const fim = new Date(inicio.getTime() + 1 * 60000); // +1 minuto
+                return {
+                    id: a.id,
+                    title: a.tarefa ? a.tarefa.nomeTarefa : "Sem nome",
+                    start: inicio,
+                    end: fim,
+                    extendedProps: {
+                        concluida: a.concluida,
+                        tarefaId: a.tarefaId,
+                        valor: a.tarefa ? a.tarefa.valorTarefa : "sem valor",
+                    }
+                };
+            });
+
 
             console.log("Eventos formatados: ", eventosFormatados);
             setEventos(eventosFormatados);
@@ -100,18 +108,6 @@ function CalendarioPai() {
     }, [filhoSelecionado]);
 
 
-    function handleDirecionamentoConfiguracao() {
-        navigate('/cadastroFilho')
-    }
-
-    function handleDirecionamentoTarefa() {
-        navigate('/cadastroTarefa')
-    }
-
-    function handleDirecionamentoPremio() {
-        navigate('/cadastroPremio')
-    }
-
     const handleOpenModalCriar = () => setIsOpen(true);
     const handleCloseModalCriar = () => setIsOpen(false);
 
@@ -123,7 +119,7 @@ function CalendarioPai() {
 
     const atualizarEventos = async () => {
         if (filhoSelecionado?.id) {
-            await fetchTarefasFilho(); 
+            await fetchTarefasFilho();
         }
     };
 
@@ -141,14 +137,50 @@ function CalendarioPai() {
 
     console.log("Filho selecionado: ", filhoSelecionado);
 
+    async function fetchResgistros() {
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Você precisa estar logado para cadastrar tarefas");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/api/resgate/mostrarHistorico", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                    'idFilho': `${filhoSelecionado.id}`
+                }
+            })
+
+            if (!response.ok) throw new Error("Erro ao buscar filhos");
+
+            const data = await response.json();
+            console.log("Dados de log", data);
+            setDadosResgate(data);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchResgistros();
+    }, [filhoSelecionado]);
+
+    console.log("Resgate: ", dadosResgate);
+
+
 
     return (
-        <div className='container'>
-            <h1>Voce esta no calendario do Pai</h1>
-            <button onClick={handleDirecionamentoConfiguracao} >CONFIGURACAO</button>
-            <button onClick={handleDirecionamentoTarefa}>Tarefas</button>
-            <button onClick={handleDirecionamentoPremio}>Premios</button>
-            <ul>
+        <div className='container-calendario-pai'>
+            <NavBar />
+            <h1 className='saudacao'>Bem vindo(a) ao calendário</h1>
+
+            <ul className='lista-filhos'>
                 <h2>Escolha seu filho</h2>
                 {dadosFetch.map((dadoFetch) => {
                     return (
@@ -167,10 +199,14 @@ function CalendarioPai() {
                     );
                 })}
             </ul>
-            <div>
+
+
+
+
+            <div className='calendarioPai'>
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin]}
-                    height={970}
+                    height={900}
                     locale={ptBrLocate}
                     events={eventos}
                     aspectRatio={1.35}
@@ -187,10 +223,12 @@ function CalendarioPai() {
                     }}
 
                     eventClassNames={(info) => {
-                        if (info.event.extendedProps.concluida == true) {
+                        if (info.event.extendedProps.concluida === 'CONCLUIDA') {
                             return ["evento-concluido"];
-                        } else {
+                        } if (info.event.extendedProps.concluida === 'PENDENTE') {
                             return ["evento-pendente"];
+                        } else {
+                            return ["evento-analise"];
                         }
                     }}
 
@@ -215,6 +253,23 @@ function CalendarioPai() {
                         />
                     )
                 }
+
+                <div>
+                    <ul className='lista-filhos'>
+                        <h2>Lista de resgates de premios</h2>
+                        {dadosResgate.map((log) => {
+                            return (
+                                <li key={log.id}>
+                                    Nome Prêmio: {log.premio?.nomePremio || `${log.premioId || "Premio indisponível"}`} -
+                                    Pontos gastos: {log.pontosGastos} -
+                                    Horário: {log.dataResgate}
+                                </li>
+                            );
+                        })}
+                        <h2>-----------------</h2>
+                    </ul>
+                </div>
+
 
             </div>
         </div>

@@ -1,6 +1,7 @@
 const dataBase = require('../../database/db'); 
 const Sequelize = require('sequelize'); 
 const Pai = require('./user.model'); 
+const { toDefaultValue } = require('sequelize/lib/utils');
 
 
 const Tarefa = dataBase.define('tarefas', {
@@ -19,7 +20,14 @@ const Tarefa = dataBase.define('tarefas', {
     valorTarefa: {
         type: Sequelize.INTEGER,
         allowNull: false
+    }, 
+
+    status: {
+        type: Sequelize.ENUM('ATIVA', 'DESATIVADA'),
+        allowNull: false, 
+        defaultValue: 'ATIVA'
     }
+    
 })
 
 Pai.hasMany(Tarefa, {foreignKey: "idPai"}); 

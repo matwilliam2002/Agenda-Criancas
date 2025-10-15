@@ -1,4 +1,4 @@
-import "../components/modalEditar.css";
+import './modalEditar.css'; 
 
 function Modal({ filho, onClose}) {
   async function handleSubmit(e) {
@@ -43,8 +43,8 @@ function Modal({ filho, onClose}) {
   }
 
   return (
-    <div className="Container">
-      <div className="container-modal">
+    <div className="container-editar-filho">
+      <div className="container-modal-editar-filho">
         <h1>Editar Filho</h1>
         <form onSubmit={handleSubmit}>
           <label>Usuário: </label>
@@ -63,7 +63,7 @@ function Modal({ filho, onClose}) {
           />
 
           <button type="submit">Salvar</button>
-          <button type="button" onClick={onClose}>Cancelar</button>
+          <button type="button" className='btn-cancel-editar-filho' onClick={onClose}>Cancelar</button>
         </form>
       </div>
     </div>

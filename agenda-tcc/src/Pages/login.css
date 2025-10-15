@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 /* 🔧 Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: 'Lexend', sans-serif;
@@ -16,7 +11,8 @@ body {
 .card-login {
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    width: 100vw;
+    margin: 0;
 }
 
 /* 🟦 Lado esquerdo */
