@@ -43,7 +43,6 @@ function ModalResgatarPremio({ Premio, onClose }) {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <h1>Oi</h1>
                 <p>Você deseja resgatar este prêmio?</p>
                 <div className="modal-buttons">
                     <button className="btn-confirmar" onClick={handleSubmit}>Confirmar</button>

@@ -10,6 +10,7 @@ import IconAmanha from '../../assets/agenda.png';
 import iconHora from '../../assets/clock.png';
 import iconValor from '../../assets/coin.png';
 import iconTarefa from '../../assets/task.png';
+import IconSair from '..//..//assets/logout.png'
 
 
 
@@ -166,14 +167,26 @@ function CalendarioFilho() {
 
   }
 
+  function handleDirecionamentoSair() {
+    localStorage.removeItem("token");
+    navigate('/');
+  }
+
+
 
   return (
     <div className="container">
       <h1 className="tituloCalendario">Suas tarefas</h1>
-      <Pontos
-        ref={pontosRef}
-        onClick={handleDirecionamentoPontos}
-      />
+      <div className="card-pontos">
+        <Pontos
+          ref={pontosRef}
+          onClick={handleDirecionamentoPontos}
+        />
+        <div className='container-sair-cal-filho'>
+                <h1>Sair</h1>
+                <button className='btn-sair-cal-filho' onClick={handleDirecionamentoSair} > <img className='icon-sair-cal' src={IconSair} alt="" /> </button>
+              </div>
+        </div>
       <div className="cards">
         <div className="cardDia"
           onClick={() => handleModalMostrarTarefa("ontem")}

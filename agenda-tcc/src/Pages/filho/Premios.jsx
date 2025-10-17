@@ -95,7 +95,7 @@ function Premios() {
                 <ul>
                     {dados.map((premios) => (
                         <li key={premios.id}>
-                            Nome premio: {premios.nomePremio} valorPremio: {premios.valorPremio}  <img src={premios.imagemUrl} alt="" />
+                            {premios.nomePremio} - {premios.valorPremio} Pontos  <img src={premios.imagemUrl} alt="" />
                             <button onClick={() => handlePremio(premios)}>Resgatar Premio</button>
                         </li>
                     ))}

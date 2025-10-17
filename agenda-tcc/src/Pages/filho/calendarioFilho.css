@@ -8,6 +8,8 @@
   background-color: #FAEED1;
 }
 
+
+
 .tituloCalendario {
   text-align: center;
   margin: 4px;
@@ -25,6 +27,47 @@
   margin: 10px 40px 40px 40px;
 
 }
+
+.card-pontos{
+  margin-left: 105px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-sair-cal-filho{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 25px 40px;
+  gap: 20px;
+  font-size: 30px;
+}
+
+.btn-sair-cal-filho {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  color: #1d3557;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.btn-sair-cal-filho:hover {
+  transform: scale(1.08);
+  background-color: transparent, 
+}
+
+.icon-sair-cal {
+  height: 78px;
+}
+
 
 .cardDia {
   display: flex;
@@ -46,6 +89,8 @@
 
 
 }
+
+
 
 .cardDiaHoje {
   display: flex;

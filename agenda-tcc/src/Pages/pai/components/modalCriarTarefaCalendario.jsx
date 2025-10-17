@@ -81,39 +81,49 @@ function ModalCriarTarefa({onClose, dadosFilho, onTarefaCriada}) {
   }
 
   return (
-    <div className="Container">
-      <div className="container-modal">
+    <div className="Container-all-modal-criar-tarefa">
+      <div className="container-modal-criar-tarefa">
         <h1>Adicionar tarefa</h1>
-        <form onSubmit={handleSubmit}>
-          <label>Dia e horário</label>
-          <input
-            type="datetime-local"
-            name="usuario"
-            onChange={(e) => setDataHora(e.target.value)}
-            required
-          />
-          <label>Tarefas</label>
-          <ul>
-            {dadosTarefas.map((dadosTarefa) => (
-             
-              <li key={dadosTarefa.id}>
-                <label>
-                  <input
-                    type="radio"
-                    name="tarefa"   
-                    value={dadosTarefa.id}
-                    checked={tarefaEscolhida?.id === dadosTarefa.id}
-                    onChange={() => setTarefaEscolhida(dadosTarefa)}
-                    required
-                  />
-                  {dadosTarefa.nomeTarefa}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <label >Valor tarefa: {tarefaEscolhida?.valorTarefa}</label>
-          <button type="submit">Salvar</button>
-          <button type="button" onClick={onClose}>Cancelar</button>
+        <form className="form-adicionar-tarefa" onSubmit={handleSubmit}>
+          <div className="container-data">
+            <label>Dia e horário</label>
+            <input
+              type="datetime-local"
+              name="usuario"
+              onChange={(e) => setDataHora(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="container-lista-tarefas">
+            <label>Tarefas</label>
+            <ul>
+              {dadosTarefas.map((dadosTarefa) => (
+              
+                <li key={dadosTarefa.id}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="tarefa"   
+                      value={dadosTarefa.id}
+                      checked={tarefaEscolhida?.id === dadosTarefa.id}
+                      onChange={() => setTarefaEscolhida(dadosTarefa)}
+                      required
+                    />
+                    {dadosTarefa.nomeTarefa}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <label >Valor tarefa: {tarefaEscolhida?.valorTarefa} pontos</label>
+
+          <div className="container-btns">
+            <button type="submit">Salvar</button>
+            <button type="button" onClick={onClose}>Cancelar</button>
+          </div>
+
         </form>
       </div>
     </div>

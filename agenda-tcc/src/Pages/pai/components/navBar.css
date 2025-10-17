@@ -1,11 +1,19 @@
-.navbar {
+.container-navbar{
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 70px;
+  justify-content: center;
+}
+
+.btns-direcionamento {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
 }
 
-.navbar button {
+.btns-direcionamento button {
   background-color: #A8DADC;
   height: 70px;
   width: 320px;
@@ -18,11 +26,45 @@
   transition: all 0.25s ease;
 }
 
-.navbar button:hover {
+.btns-direcionamento button:hover {
   background-color: #d1d420;
 }
 
-.navbar button.ativo {
+.btns-direcionamento button.ativo {
   background-color: #d1d420; /* Cor do botão ativo */
   color: white;
 }
+
+.container-sair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 190px;
+  gap: 15px;
+}
+
+.btn-sair {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  color: #1d3557;
+  font-size: 24px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+.btn-sair:hover {
+  transform: scale(1.08);
+  background-color: transparent, 
+}
+
+.icon-sair {
+  height: 68px;
+}
+
