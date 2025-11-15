@@ -6,8 +6,6 @@ const { Op } = require("sequelize");
 
 const operacoesTarefasFilho = {
 
-
-
     mostrarTarefafilhoPai: async (req, res) => {
         const filhoId = req.headers["x-custom-data"];
         console.log("Filho: ", filhoId);
@@ -20,6 +18,7 @@ const operacoesTarefasFilho = {
                 include: [{ model: Tarefa }]
             })
             res.json(tarefaFilho);
+            
         } catch (error) {
             res.status(500).json({ error: "Erro ao listar tarefasFilho" });
 
@@ -114,9 +113,12 @@ const operacoesTarefasFilho = {
             const amanha = new Date(hoje);
             amanha.setDate(hoje.getDate() + 1);
 
+            
+
             const tarefas = await TarefaFilho.findAll({
                 where: {
                     filhoId,
+                    status : "ATIVA", 
                     dataHora: {
                         [Op.or]: [
                             { [Op.between]: [inicioDoDia(ontem), fimDoDia(ontem)] },
@@ -136,6 +138,22 @@ const operacoesTarefasFilho = {
             return res.status(500).json({ error: "Erro ao buscar tarefas" });
         }
 
+    }, 
+
+    desativarTarefa: async (req, res) => {
+        try {
+            const {id} = req.body; 
+            await TarefaFilho.update(
+                {status: `DESATIVADA`},
+                {where:  {id}}
+            )
+
+            return res.status(200).json({message: "Tarefa desativada com sucesso"});
+            
+        } catch (error) {
+            console.error("Erro ao desativar a tarefa", error)
+            return res.status(500).json({message:"Erro interno ao desativar"});
+        }
     }
 
 }

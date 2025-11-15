@@ -18,18 +18,20 @@ function ModalResgatarPremio({ Premio, onClose }) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    dataResgate: new Date().toISOString().split('T')[0],   // "2025-10-07",
+                    dataResgate: new Date().toISOString(),   // "2025-10-07",
                     pontosGastos: Premio.valorPremio,
                     premioId: Premio.id,
                 })
 
             })
 
+            const data = await response.json();
+
             if (!response.ok) {
-                alert("Voce náo tem pontos suficientes");
+                alert(`Erro: ${data.erro || "Falha ao resgatar o prêmio."}`);
+                return;
             }
 
-            const data = await response.json();
             console.log("Atualizado com sucesso", data);
             onClose(); 
 

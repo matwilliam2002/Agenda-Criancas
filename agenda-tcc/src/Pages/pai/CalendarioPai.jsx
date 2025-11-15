@@ -80,6 +80,7 @@ function CalendarioPai() {
                         concluida: a.concluida,
                         tarefaId: a.tarefaId,
                         valor: a.tarefa ? a.tarefa.valorTarefa : "sem valor",
+                        status: a.status,
                     }
                 };
             });
@@ -175,6 +176,9 @@ function CalendarioPai() {
 
 
 
+
+
+
     return (
         <div className='container-calendario-pai'>
             <NavBar />
@@ -200,9 +204,6 @@ function CalendarioPai() {
                 })}
             </ul>
 
-
-
-
             <div className='calendarioPai'>
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin]}
@@ -223,13 +224,25 @@ function CalendarioPai() {
                     }}
 
                     eventClassNames={(info) => {
-                        if (info.event.extendedProps.concluida === 'CONCLUIDA') {
-                            return ["evento-concluido"];
-                        } if (info.event.extendedProps.concluida === 'PENDENTE') {
-                            return ["evento-pendente"];
-                        } else {
-                            return ["evento-analise"];
+                        const {concluida, status}  = info.event.extendedProps;
+                        console.log("Status tarefa: ", status);
+                        
+
+                        if (status === "ATIVA") {
+                            if (concluida === 'CONCLUIDA') {
+                                return ["evento-concluido"];
+                            }
+                            if (concluida === 'PENDENTE') {
+                                return ["evento-pendente"];
+                            }
+                            if (concluida === "ANALISE") {
+                                return ["evento-analise"];
+                            }
+                        }else{
+                            return ["evento-desativado"];
                         }
+                        
+
                     }}
 
                     eventClick={eventClick}
@@ -253,24 +266,22 @@ function CalendarioPai() {
                         />
                     )
                 }
+            </div>
 
-                <div>
-                    <ul className='lista-filhos'>
-                        <h2>Lista de resgates de premios</h2>
-                        {dadosResgate.map((log) => {
-                            return (
-                                <li key={log.id}>
-                                    Nome Prêmio: {log.premio?.nomePremio || `${log.premioId || "Premio indisponível"}`} -
-                                    Pontos gastos: {log.pontosGastos} -
-                                    Horário: {log.dataResgate}
-                                </li>
-                            );
-                        })}
-                        <h2>-----------------</h2>
-                    </ul>
-                </div>
+            <div>
+                <ul className='lista-filhos'>
+                    <h2>Lista de resgates de premios</h2>
 
-
+                    
+                    {dadosResgate.map((log) => {
+                        return (
+                            <li key={log.id}>
+                                {log.premio?.nomePremio || `${log.premioId || "Premio indisponível"}`} - {log.pontosGastos} Pontos - {log.dataResgate}
+                            </li>
+                        );
+                    })}
+                    <h2>-----------------</h2>
+                </ul>
             </div>
         </div>
     );

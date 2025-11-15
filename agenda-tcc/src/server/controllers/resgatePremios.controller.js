@@ -1,20 +1,23 @@
-const { where } = require('sequelize');
 const ResgatePremio = require('../models/resgatePremios');
 const Usuario = require(`../models/user.model`);
 const Premio = require('../models/premio.model');
-const { response } = require('express');
 
 const Operacoes = {
     Resgate: async (req, res) => {
-
         try {
             const { dataResgate, pontosGastos, premioId } = req.body;
             const usuarioId = req.usuario.id;
 
+            
 
             const usuarioEncontrado = await Usuario.findByPk(usuarioId);
 
             console.log("Pontos: ", usuarioEncontrado.pontos);
+            console.log("Horário: ", dataResgate);
+            console.log("Usuário encontrado: ", usuarioId);
+            console.log("Pontos gastos", pontosGastos);
+            
+
 
 
             if (usuarioEncontrado.pontos < pontosGastos) {
@@ -42,7 +45,6 @@ const Operacoes = {
     mostrarResgates: async (req, res) => {
         try {
             const usuarioId = req.headers['idfilho'];
-            console.log("ID recebido do header:", usuarioId);
 
 
             const historicoResgate = await ResgatePremio.findAll({
@@ -51,6 +53,7 @@ const Operacoes = {
             })
 
             return res.json(historicoResgate);
+            
         } catch (error) {
             return res.status(400).json({ erro: error.message });
         }

@@ -28,8 +28,38 @@ function ModalEditarTarefa({ onClose, tarefa, onTaeraConcluida }) {
       const data = await response.json();
       console.log("Tarefa atualizada com sucesso");
       onClose();
-      onTaeraConcluida(); 
+      onTaeraConcluida();
       return data;
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleDesativar() {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch("http://localhost:3000/api/tarefaFilho/desativarTarefaFilho", {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          id: tarefa.id,
+        })
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Erro ao desativar tarefa");
+      }
+
+      const data = await response.json();
+      console.log(data.message); 
+      onClose();
+      onTaeraConcluida();
 
     } catch (error) {
       console.error(error);
@@ -41,9 +71,9 @@ function ModalEditarTarefa({ onClose, tarefa, onTaeraConcluida }) {
   return (
     <div className="Container">
       <div className="container-modal">
-        <h1>Adicionar tarefa</h1>
+        <h1>Gerenciar Tarefa</h1>
         <button type="button" onClick={handleConcluirTarefa}>Concluir tarefa</button>
-        <button type="submit">Excluir tarefa</button>
+        <button type="submit" onClick={handleDesativar}>Desativar tarefa</button>
         <button type="button" onClick={onClose}>Cancelar</button>
       </div>
     </div>

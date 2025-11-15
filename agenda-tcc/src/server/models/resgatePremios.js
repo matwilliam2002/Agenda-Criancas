@@ -11,7 +11,7 @@ const ResgatePremios = sequelize.define("resgatePremios", {
         autoIncrement: true,
     },
     dataResgate: {
-        type: Sequelize.TIME,
+        type: Sequelize.DATE,
         allowNull: false,
     },
     pontosGastos: {

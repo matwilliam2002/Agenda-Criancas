@@ -9,6 +9,7 @@ router.post('/criarTarefaPai', authMiddleware, operacoesTarefasFilho.criarTarefa
 router.put('/concluirTarefa', authMiddleware, operacoesTarefasFilho.concluirTarefa); 
 router.get('/mostrarTarefasFilho', authMiddleware, operacoesTarefasFilho.buscarTarefasCalendarioFilho);
 router.patch('/concluirTarefaFilho', authMiddleware, operacoesTarefasFilho.concluirTarefaFilho); 
+router.patch('/desativarTarefaFilho', authMiddleware, operacoesTarefasFilho.desativarTarefa); 
 
 
 module.exports = router; 

@@ -22,6 +22,12 @@ const TarefaFilho = sequelize.define('tarefasFilhos', {
         type: Sequelize.DATE,
         allowNull: false,
     }, 
+
+    status: {
+        type: Sequelize.ENUM(`ATIVA`, `DESATIVADA`), 
+        allowNull: false, 
+        defaultValue: `ATIVA`,
+    }
 }); 
 
 Filho.hasMany(TarefaFilho, {foreignKey: 'filhoId'}); 

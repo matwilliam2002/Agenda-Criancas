@@ -140,21 +140,35 @@
 
 /* Eventos pendentes */
 .fc-event.evento-pendente {
-  background-color: #e63946 !important;
-  border-color: #a4161a !important;
-  color: #fff !important;
+  background-color: #e63946;
+  border-color: #a4161a ;
+  color: #fff ;
   border-radius: 10px;
   font-size: 17px;
   font-weight: 600;
   padding: 4px 6px;
   cursor: pointer;
   transition: transform 0.2s ease;
+
+}
+
+.fc-event.evento-desativado {
+  background-color: #777777 ;
+  border-color: #a4161a ;
+  color: #fff ;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 4px 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  opacity: 0.8;   
 }
 
 .fc-event.evento-analise {
-  background-color: #ffec40 !important;
-  border-color: #e4da55 !important;
-  color: #fff !important;
+  background-color: #ffec40 ;
+  border-color: #e4da55 ;
+  color: #fff ;
   border-radius: 10px;
   font-size: 17px;
   font-weight: 600;
